@@ -13,14 +13,14 @@ void readMovieHeader(FILE *handle, MovieHeader *header) {
 	fread(header, sizeof(MovieHeader), 1, handle);
 }
 
-MovieFrame *loadInput(FILE *handle, u_int32_t length) {
+MovieFrame *loadInput(FILE *handle, uint32_t length) {
 	fseek(handle, 0x40, SEEK_SET);
 	MovieFrame *buffer = (MovieFrame *) calloc(length, sizeof(MovieFrame));
 	fread(buffer, sizeof(MovieHeader), length, handle);
 	return buffer;
 }
 
-u_int32_t getInputLength(FILE *handle) {
+uint32_t getInputLength(FILE *handle) {
     fseek(handle, 0, SEEK_END);
     return (ftell(handle) - 0x40) / 3;
 }

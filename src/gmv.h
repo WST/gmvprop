@@ -32,7 +32,9 @@ MovieFile *loadGMV(const char *filename);
 
 void disposeInput(MovieFrame *movie);
 
-MovieFrame *loadInput(FILE *handle, u_int32_t length);
+uint32_t getInputLength(FILE *handle);
+
+MovieFrame *loadInput(FILE *handle, uint32_t length);
 
 void readMovieHeader(FILE *handle, MovieHeader *header);
 
