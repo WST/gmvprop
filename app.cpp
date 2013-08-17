@@ -17,8 +17,8 @@ App::~App()
 
 void App::on_actionAbout_triggered() {
     QMessageBox box;
-    box.setText("GMV property editor                                           ");
-    box.setInformativeText("An example application working with GMV files\n© YouTube Sonic TAS community <ystc.ru>");
+    box.setText("GMV property editor                                                  ");
+    box.setInformativeText(QString::fromUtf8("An example application working with GMV files\n© YouTube Sonic TAS community <ystc.ru>"));
     box.setIcon(QMessageBox::Information);
     box.exec();
 }
