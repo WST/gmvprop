@@ -16,8 +16,7 @@ App::App(QWidget *parent): QMainWindow(parent), ui(new Ui::App), filename("") {
     ui->toolbar->addAction(ui->actionAbout);
 }
 
-App::~App()
-{
+App::~App() {
     delete ui;
 }
 
@@ -41,11 +40,17 @@ void App::on_actionOpen_triggered() {
     gmv = loadGMV(filename.toStdString().c_str());
     ui->comment->setText(QString((const char *) gmv->header.comment));
     ui->rerecords->setValue(gmv->header.rerecords);
+    ui->fps->setValue(getInputFrameRate(gmv));
+    ui->savestate->setChecked(movieRequiresSavestate(gmv));
+    ui->tracks->setValue(getInputControllerNumber(gmv));
 
     ui->actionSave->setEnabled(true);
     ui->actionClose->setEnabled(true);
     ui->rerecords->setEnabled(true);
     ui->comment->setEnabled(true);
+    ui->fps->setEnabled(true);
+    ui->savestate->setEnabled(true);
+    ui->tracks->setEnabled(true);
 }
 
 void App::on_actionSave_triggered() {

@@ -53,6 +53,18 @@ MovieFile *loadGMV(const char *filename) {
 	return buffer;
 }
 
+uint8_t getInputFrameRate(MovieFile *movie) {
+    return ((movie->header.flags) & (1 << 7)) ? 50 : 60;
+}
+
+uint8_t movieRequiresSavestate(MovieFile *movie) {
+    return (movie->header.flags) & (1 << 6);
+}
+
+uint8_t getInputControllerNumber(MovieFile *movie) {
+    return ((movie->header.flags) & (1 << 5)) ? 3 : 2;
+}
+
 void disposeGMV(MovieFile *gmv) {
 	disposeInput(gmv->frames);
 	free(gmv);

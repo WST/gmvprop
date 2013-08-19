@@ -41,3 +41,9 @@ void readMovieHeader(FILE *handle, MovieHeader *header);
 void disposeGMV(MovieFile *gmv);
 
 void saveGMV(MovieFile *gmv, const char *filename);
+
+uint8_t getInputFrameRate(MovieFile *movie);
+
+uint8_t movieRequiresSavestate(MovieFile *movie);
+
+uint8_t getInputControllerNumber(MovieFile *movie);
