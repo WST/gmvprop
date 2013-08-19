@@ -30,15 +30,24 @@ void disposeInput(MovieFrame *movie) {
 }
 
 MovieFile *loadGMV(const char *filename) {
-	// Trying to open an input file, which may not exist. We assume it’s a valid gmv file.
 	FILE *gmv = fopen(filename, "r");
 	if(!gmv) return 0;
+
+    fseek(gmv, 0, SEEK_END);
+    uint32_t length = ftell(gmv);
+
+    if(length < 0x40) {
+        fclose(gmv);
+        return 0;
+    }
 
 	// Allocating memory. Since input files are not large, we can store them in RAM entirely
 	MovieFile *buffer = (MovieFile *) malloc(sizeof(MovieFile));
 
 	// Loading the header (step 1)
 	readMovieHeader(gmv, &(buffer->header));
+
+    // TODO: validate signature
 
     // Determining movie length (step 2)
     buffer->length = getInputLength(gmv);
@@ -63,6 +72,30 @@ uint8_t movieRequiresSavestate(MovieFile *movie) {
 
 uint8_t getInputControllerNumber(MovieFile *movie) {
     return ((movie->header.flags) & (1 << 5)) ? 3 : 2;
+}
+
+void setInputFrameRate(MovieFile *movie, uint8_t rate) {
+    /*if(rate == 50) {
+        (movie->header.flags) |= (1 << 7);
+    } else {
+        (movie->header.flags) &= (0xBF);
+    }*/
+}
+
+void requireSavestate(MovieFile *movie, uint8_t savestate_is_required) {
+    /*if(savestate_is_required) {
+        (movie->header.flags) |= (1 << 6);
+    } else {
+        (movie->header.flags) &= (0xDF);
+    }*/
+}
+
+void setInputControllerNumber(MovieFile *movie, uint8_t controller_number) {
+    if(controller_number == 3) {
+        (movie->header.flags) |= (1 << 5);
+    } else {
+        (movie->header.flags) &= (0xFFEF);
+    }
 }
 
 void disposeGMV(MovieFile *gmv) {

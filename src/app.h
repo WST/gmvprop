@@ -30,10 +30,21 @@ private slots:
 
     void on_actionClose_triggered();
 
+    void on_comment_textEdited(const QString &arg1);
+
+    void on_rerecords_valueChanged(int arg1);
+
+    void on_tracks_valueChanged(int arg1);
+
+    void on_savestate_stateChanged(int arg1);
+
+    void on_fps_valueChanged(int arg1);
+
 private:
     Ui::App *ui;
     MovieFile *gmv;
     QString filename;
+    bool modified;
 };
 
 #endif // APP_H

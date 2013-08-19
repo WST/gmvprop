@@ -47,3 +47,9 @@ uint8_t getInputFrameRate(MovieFile *movie);
 uint8_t movieRequiresSavestate(MovieFile *movie);
 
 uint8_t getInputControllerNumber(MovieFile *movie);
+
+void setInputFrameRate(MovieFile *movie, uint8_t rate);
+
+void requireSavestate(MovieFile *movie, uint8_t savestate_is_required);
+
+void setInputControllerNumber(MovieFile *movie, uint8_t controller_number);
