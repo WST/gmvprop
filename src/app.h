@@ -45,6 +45,8 @@ private:
     MovieFile *gmv;
     QString filename;
     bool modified;
+    bool wannaSave();
+    void save();
 };
 
 #endif // APP_H

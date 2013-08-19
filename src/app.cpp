@@ -44,6 +44,7 @@ void App::on_actionOpen_triggered() {
 
     if(!gmv) {
         // Failed to load the provided file
+        return;
     }
 
     ui->comment->setText(QString((const char *) gmv->header.comment));
@@ -61,18 +62,31 @@ void App::on_actionOpen_triggered() {
 }
 
 void App::on_actionSave_triggered() {
+    save();
+}
+
+void App::save() {
     saveGMV(gmv, filename.toStdString().c_str());
     modified = false;
 }
 
+bool App::wannaSave() {
+    QMessageBox box;
+    box.setText("Do you want to save changes?");
+    box.setIcon(QMessageBox::Question);
+    box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    return (box.exec() == QMessageBox::Yes);
+}
+
 void App::on_actionClose_triggered() {
+
+    if(modified) {
+        if(wannaSave()) save();
+    }
+
     ui->actionClose->setEnabled(false);
     ui->actionSave->setEnabled(false);
 
-    ui->comment->clear();
-    ui->rerecords->clear();
-    ui->fps->clear();
-    ui->tracks->clear();
     ui->tabs->setVisible(false);
     disposeGMV(gmv);
     gmv = 0;
