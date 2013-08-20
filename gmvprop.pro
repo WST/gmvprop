@@ -2,14 +2,12 @@ QT = core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = gmvprop
 TEMPLATE = app
-SOURCES = src/main.cpp src/app.cpp src/gmv.c
-HEADERS = src/app.h src/gmv.h
-FORMS = ui/app.ui
+SOURCES = src/main.cpp src/app.cpp src/gmv.c src/about.cpp
+HEADERS = src/app.h src/gmv.h src/about.h
+FORMS = ui/app.ui ui/about.ui
 DESTDIR = bin
 MOC_DIR = build
 OBJECTS_DIR = build
 RCC_DIR = build
 UI_DIR = build
-
-RESOURCES += \
-    res/resources.qrc
+RESOURCES += res/resources.qrc

@@ -76,25 +76,25 @@ uint8_t getInputControllerNumber(MovieFile *movie) {
 
 void setInputFrameRate(MovieFile *movie, uint8_t rate) {
     if(rate == 50) {
-        (movie->header.flags) |= (0b10000000);
+        movie->header.flags |= 0x80;
     } else {
-        (movie->header.flags) &= (0b01111111);
+        movie->header.flags &= 0x7F;
     }
 }
 
 void requireSavestate(MovieFile *movie, uint8_t savestate_is_required) {
     if(savestate_is_required) {
-        (movie->header.flags) |= (0b01000000);
+        movie->header.flags |= 0x40;
     } else {
-        (movie->header.flags) &= (0b10111111);
+        movie->header.flags &= 0xBF;
     }
 }
 
 void setInputControllerNumber(MovieFile *movie, uint8_t controller_number) {
     if(controller_number == 3) {
-        (movie->header.flags) |= (0b00100000);
+        movie->header.flags |= 0x20;
     } else {
-        (movie->header.flags) &= (0b11011111);
+        movie->header.flags &= 0xDF;
     }
 }
 

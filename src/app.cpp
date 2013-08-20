@@ -1,5 +1,6 @@
 #include "app.h"
 #include "ui_app.h"
+#include "about.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -24,11 +25,16 @@ App::~App() {
 }
 
 void App::on_actionAbout_triggered() {
+    /*
     QMessageBox box;
     box.setText("GMV property editor                                                  ");
     box.setInformativeText(QString::fromUtf8("An example application working with GMV files\n© YouTube Sonic TAS community <ystc.ru>"));
     box.setIcon(QMessageBox::Information);
     box.exec();
+    */
+
+    About about;
+    about.exec();
 }
 
 void App::on_actionExit_triggered() {
@@ -115,4 +121,11 @@ void App::on_savestate_stateChanged(int arg1) {
 void App::on_fps_valueChanged(int arg1) {
     setInputFrameRate(gmv, arg1);
     modified = true;
+}
+
+void App::on_append_to_the_end_toggled(bool checked) {
+    if(checked) {
+        ui->append_position->setValue(gmv->length);
+    }
+    ui->append_position->setEnabled(!checked);
 }

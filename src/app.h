@@ -40,6 +40,8 @@ private slots:
 
     void on_fps_valueChanged(int arg1);
 
+    void on_append_to_the_end_toggled(bool checked);
+
 private:
     Ui::App *ui;
     MovieFile *gmv;

@@ -5,5 +5,6 @@
         <file>document-save.png</file>
         <file>help-about.png</file>
         <file>logo_16.png</file>
+        <file alias="amy_sonicx_heart.png">amy_sonicx_heart.png</file>
     </qresource>
 </RCC>
