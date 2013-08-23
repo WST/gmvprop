@@ -129,3 +129,7 @@ void App::on_append_to_the_end_toggled(bool checked) {
     }
     ui->append_position->setEnabled(!checked);
 }
+
+void App::on_range_from_valueChanged(int arg1) {
+    ui->range_to->setMinimum(arg1);
+}

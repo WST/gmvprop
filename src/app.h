@@ -42,6 +42,8 @@ private slots:
 
     void on_append_to_the_end_toggled(bool checked);
 
+    void on_range_from_valueChanged(int arg1);
+
 private:
     Ui::App *ui;
     MovieFile *gmv;
