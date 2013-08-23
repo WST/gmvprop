@@ -133,3 +133,11 @@ void App::on_append_to_the_end_toggled(bool checked) {
 void App::on_range_from_valueChanged(int arg1) {
     ui->range_to->setMinimum(arg1);
 }
+
+void App::on_actionOptions_triggered() {
+    qApp->aboutQt();
+}
+
+void App::on_actionForum_thread_triggered() {
+    qApp->aboutQt();
+}
